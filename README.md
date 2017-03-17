@@ -9,6 +9,7 @@ The project is currently in its first phase, where we are creating a command lin
 ----------------------------------------
 
 **Authors**
+- **Swati Gupta**, \<swati.gupta@holbertonschool.com>, @sgupta1505
 - **Philip Yoo**, \<philip.yoo@holbertonschool.com>, @philipYoo10
 - **Jianqin Wang**, \<jianqin.wang@holbertonschool.com>, @jianqinwang94
 
