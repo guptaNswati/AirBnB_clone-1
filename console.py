@@ -3,10 +3,16 @@ import cmd
 from models import *
 import ast
 """
+This is the HBNBCommand module. This module defines HBNBCommand class.
+The HBNBCommand inherits from Cmd class and opens a command line interpreter
+and prompts user for a command. Type help to list available commands.
 """
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    This is the HBNBCommand Class
+    """
     prompt = '(hbnb)'
     storage.reload()
 
@@ -14,6 +20,7 @@ class HBNBCommand(cmd.Cmd):
                      "City", "Amenity", "Place", "Review"]
 
     def emptyline(self):
+        """ for handling empty line """
         pass
 
     def do_quit(self, args):
@@ -238,21 +245,29 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def kwarg_parser(args):
+        """ parses the key-value pairs and validates"""
         key_value = {}
         for arg in args:
-            key_val = arg.split("=")
-            if len(key_val) == 2:
-                value = None
-                try:
-                    value = int(key_val[1])
-                except ValueError:
+            if " " not in arg:
+                key_val = arg.split("=")
+                if len(key_val) == 2:
+                    value = None
                     try:
-                        value = float(key_val[1])
+                        value = int(key_val[1])
                     except ValueError:
-                        value = key_val[1]
-                        if "_" in value:
-                            value = value.replace("_", " ")
-                key_value[key_val[0]] = value
+                        try:
+                            value = float(key_val[1])
+                        except ValueError:
+                            value = key_val[1]
+                            if value[0] == '"' and value[-1] == '"':
+                                value = value[1:-1]
+                            if "_" in value:
+                                value = value.replace("_", " ")
+                            key_value[key_val[0]] = value
+                else:
+                    print("Not a valid key-value pair")
+            else:
+                print("No space inside the key or value")
         return key_value
 
 if __name__ == '__main__':
