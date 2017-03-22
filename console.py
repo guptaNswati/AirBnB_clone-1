@@ -2,6 +2,9 @@
 import cmd
 from models import *
 import ast
+"""
+"""
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
@@ -232,7 +235,6 @@ class HBNBCommand(cmd.Cmd):
                 return
         else:
             print("Not a valid command")
-
 
     @staticmethod
     def kwarg_parser(args):

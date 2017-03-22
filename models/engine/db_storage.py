@@ -17,10 +17,8 @@ os.environ['HBNB_MYSQL_HOST'] = 'localhost'
 class DBStorage:
     __engine = None
     __session = None
-    class_dict = {'User': User,
-                  'State': State, 'City': City,
-                  'Amenity': Amenity, 'Place': Place,
-                  'Review': Review}
+    class_dict = {'User': User, 'State': State, 'City': City,
+                  'Amenity': Amenity, 'Place': Place, 'Review': Review}
 
     def __init__(self):
         """

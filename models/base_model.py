@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 import datetime
 import uuid
 import models
@@ -9,17 +10,16 @@ This is the BaseModel module. This module defines a BaseModule class.
 The BaseModule class defines common attributes/methods for other classes.
 """
 
-
-Base = declarative_base()
+if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+    Base = declarative_base()
 
 
 class BaseModel:
-    id = Column(String(60), primary_key=True, unique=True, nullable=False)
-    created_at = Column(DateTime(), default=datetime.now(), nullable=False)
-    updated_at = Column((DateTime(), default=datetime.now(), nullable=False)
+    if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+        id = Column(String(60), primary_key=True, unique=True, nullable=False)
+        created_at = Column(DateTime(), default=datetime.now(), nullable=False)
+        updated_at = Column(DateTime(), default=datetime.now(), nullable=False)
 
-
-    """The base class for all storage objects in this project"""
     def __init__(self, *args, **kwargs):
         """initialize class object"""
         if len(args) > 0:
@@ -29,18 +29,15 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
             self.id = str(uuid.uuid4())
-
         if len(kwargs) > 0:
             for key, value in kwargs.items():
                 setattr(self, key, value)
-
 
     def save(self):
         """method to update self"""
         self.updated_at = datetime.datetime.now()
         models.storage.new(self)
         models.storage.save()
-
 
     def __str__(self):
         """edit string representation"""
@@ -58,7 +55,6 @@ class BaseModel:
         dupe["__class__"] = type(self).__name__
         return dupe
 
-
     def delete(self):
-        """ delete the current instance from the storage  """
+        """delete the current instance from the storage"""
         models.storage.delete(self)

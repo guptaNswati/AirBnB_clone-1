@@ -10,10 +10,16 @@ inherits from BaseModel.
 
 class Review(BaseModel, Base):
     """ This is the Review class and it inherts from BaseModel class """
-    __tablename__ = "reviews"
-    place_id = Column(String(60), nullable=False, Foreignkey('places.id'))
-    user_id = Column(String(60), nullable=False, Foreignkey('users.id'))
-    text = Column(String(1024), nullable=False)
+    if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+        __tablename__ = "reviews"
+        place_id = Column(String(60), nullable=False, Foreignkey('places.id'))
+        user_id = Column(String(60), nullable=False, Foreignkey('users.id'))
+        text = Column(String(1024), nullable=False)
+    else:
+        place_id = ""
+        user_id = ""
+        text = ""
 
     def __init__(self, *args, **kwargs):
+        """ Initiate Review object """
         super().__init__(*args, **kwargs)

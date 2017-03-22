@@ -10,10 +10,14 @@ from BaseModel.
 
 class State(BaseModel):
     """ This is the State Class and it inherts from BaseModel """
-    __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-    cities = relationship("City", backref="state",
-                          cascade="all, delete, delete-orphan")
+    if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+        __tablename__ = "states"
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", backref="state",
+                              cascade="all, delete, delete-orphan")
+    else:
+        name = ""
 
     def __init__(self, *args, **kwargs):
+        """ Initiate a State object """
         super(State, self).__init__(*args, **kwargs)
