@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import cmd
 from models import *
-
+import ast
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
@@ -25,15 +25,20 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Create a new Basemodel"""
         args = args.split()
-        if len(args) != 1:
-            print("** clas name missing **")
+        arg_len = len(args)
+        if arg_len < 1:
+            print("** class name missing **")
+            return
+        if args[0] not in HBNBCommand.valid_classes:
+            print("** class doesn't exist **")
+            return
+        if arg_len == 1:
+            new_obj = eval(args[0])()
         else:
-            if len(args) > 0 and args[0] in HBNBCommand.valid_classes:
-                new_obj = eval(args[0])()
-                print(new_obj.id)
-                new_obj.save()
-            else:
-                return
+            key_value = self.kwarg_parser(args[1:])
+            new_obj = eval(args[0])(**key_value)
+        print(new_obj.id)
+        new_obj.save()
 
     def do_show(self, args):
         """Usage: show BaseModel 1234-1234-1234"""
@@ -228,6 +233,25 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("Not a valid command")
 
+
+    @staticmethod
+    def kwarg_parser(args):
+        key_value = {}
+        for arg in args:
+            key_val = arg.split("=")
+            if len(key_val) == 2:
+                value = None
+                try:
+                    value = int(key_val[1])
+                except ValueError:
+                    try:
+                        value = float(key_val[1])
+                    except ValueError:
+                        value = key_val[1]
+                        if "_" in value:
+                            value = value.replace("_", " ")
+                key_value[key_val[0]] = value
+        return key_value
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
