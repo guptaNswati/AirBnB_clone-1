@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 from models import *
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
+import os
+from models.base_model import BaseModel, Base
 """
 This is the User module. This module defines a User class that inherits from
 BaseModel.
@@ -11,7 +12,7 @@ BaseModel.
 
 class User(BaseModel, Base):
     """ This is the User class and it inherts from BaseModel """
-    if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "users"
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)

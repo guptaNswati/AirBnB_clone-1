@@ -10,12 +10,14 @@ This is the BaseModel module. This module defines a BaseModule class.
 The BaseModule class defines common attributes/methods for other classes.
 """
 
-if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+if os.getenv('HBNB_TYPE_STORAGE') == 'db':
     Base = declarative_base()
+else:
+    Base = object
 
 
 class BaseModel:
-    if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         id = Column(String(60), primary_key=True, unique=True, nullable=False)
         created_at = Column(DateTime(), default=datetime.now(), nullable=False)
         updated_at = Column(DateTime(), default=datetime.now(), nullable=False)

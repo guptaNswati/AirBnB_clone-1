@@ -9,7 +9,7 @@ from models.state import State
 from models.review import Review
 
 
-if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+if os.getenv('HBNB_TYPE_STORAGE') == 'db':
     from models.engine import db_storage
     storage = db_storage.DBStorage()
 else:
