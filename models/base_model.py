@@ -5,7 +5,8 @@ import models
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 """
-This module contains
+This is the BaseModel module. This module defines a BaseModule class.
+The BaseModule class defines common attributes/methods for other classes.
 """
 
 
@@ -16,6 +17,7 @@ class BaseModel:
     id = Column(String(60), primary_key=True, unique=True, nullable=False)
     created_at = Column(DateTime(), default=datetime.now(), nullable=False)
     updated_at = Column((DateTime(), default=datetime.now(), nullable=False)
+
 
     """The base class for all storage objects in this project"""
     def __init__(self, *args, **kwargs):
@@ -39,6 +41,7 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
+
     def __str__(self):
         """edit string representation"""
         return "[{}] ({}) {}".format(type(self)
@@ -55,6 +58,7 @@ class BaseModel:
         dupe["__class__"] = type(self).__name__
         return dupe
 
+
     def delete(self):
-        """delete the current instance from the storage"""
+        """ delete the current instance from the storage  """
         models.storage.delete(self)

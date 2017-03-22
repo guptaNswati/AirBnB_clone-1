@@ -4,14 +4,13 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 """
-This module contains PlaceAmenity and Place class.
+This is the Place class module. This module creates a Place class that inherits
+from BaseModel.
 """
 
 
 class PlaceAmenity(Base):
-    """
-    This is PlaceAmenity and it inherits from Base to define place_amenity table
-    """
+    """ This is PlaceAmenity and it inherits from Base """
     __tablename__ = "place_amenity"
     place_id = Column(String(60), primary_key=True, nullable=False,
                       ForeignKey("places.id"))
@@ -20,8 +19,7 @@ class PlaceAmenity(Base):
 
 
 class Place(BaseModel, Base):
-    """
-    """
+    """ This is the place class and it inherts from BaseModel """
     __tablename__ = "places"
     city_id = Column(String(60), nullable=False, ForeignKey("cities.id"))
     user_id = Column(String(60), nullable=False, ForeignKey("users.id"))
