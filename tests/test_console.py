@@ -75,7 +75,7 @@ class Test_Console(unittest.TestCase):
         with captured_output() as (out, err):
             self.cli.do_create('')
         output = out.getvalue().strip()
-        self.assertEqual(output, "** clas name missing **")
+        self.assertEqual(output, "** class name missing **")
 
         with captured_output() as (out, err):
             self.cli.do_create("BaseModel")
