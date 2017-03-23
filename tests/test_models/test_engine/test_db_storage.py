@@ -9,7 +9,8 @@ from models.base_model import Base
 This module contains db storage test objects.
 """
 
-class Test_FileStorage(unittest.TestCase):
+
+class Test_DBStorage(unittest.TestCase):
     """
     Test the file storage class
     """
@@ -22,9 +23,6 @@ class Test_FileStorage(unittest.TestCase):
                      'created_at': datetime(2017, 2, 12, 00, 31, 53, 331900)}
         self.model = State(**test_args)
         self.test_len = 0
-
-    def tearDown(self):
-        Base.metadata.drop_all(self.store.__engine)
 
     def test_all(self):
         self.assertEqual(len(self.store.all('State')), self.test_len)
@@ -48,8 +46,6 @@ class Test_FileStorage(unittest.TestCase):
         b.save()
         self.assertEqual(len(self.store.all()), self.test_len + 2)
 
-    def test_reload(self):
-        pass
 
 if __name__ == "__main__":
     unittest.main()
