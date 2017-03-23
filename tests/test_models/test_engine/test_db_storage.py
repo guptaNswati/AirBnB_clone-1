@@ -10,6 +10,7 @@ This module contains db storage test objects.
 """
 
 
+@unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', "Testing File Storage")
 class Test_DBStorage(unittest.TestCase):
     """
     Test the file storage class
@@ -32,16 +33,16 @@ class Test_DBStorage(unittest.TestCase):
         self.assertEqual(len(self.store.all()), self.test_len)
         self.model.save()
         self.assertEqual(len(self.store.all()), self.test_len + 1)
-        a = State()
+        a = State(name="Arizona")
         a.save()
         self.assertEqual(len(self.store.all()), self.test_len + 2)
 
     def test_save(self):
         self.test_len = len(self.store.all())
-        a = State()
+        a = State(name="California")
         a.save()
         self.assertEqual(len(self.store.all()), self.test_len + 1)
-        b = User()
+        b = User(name="Holberton")
         self.assertNotEqual(len(self.store.all()), self.test_len + 2)
         b.save()
         self.assertEqual(len(self.store.all()), self.test_len + 2)

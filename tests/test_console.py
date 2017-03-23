@@ -40,6 +40,7 @@ class Test_Console(unittest.TestCase):
         with self.assertRaises(SystemExit):
             self.cli.do_quit(self.cli)
 
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "Testing FS")
     def test_show_correct(self):
         with captured_output() as (out, err):
             self.cli.do_show("State d3da85f2-499c-43cb-b33d-3d7935bc808c")

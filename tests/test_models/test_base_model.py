@@ -1,8 +1,10 @@
 import unittest
 from datetime import datetime
 from models import *
+import os
 
 
+@unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', "No BaseModel in DB")
 class Test_BaseModel(unittest.TestCase):
     """
     Test the base model class

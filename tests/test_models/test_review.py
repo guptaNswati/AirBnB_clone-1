@@ -9,16 +9,13 @@ class Test_ReviewModel(unittest.TestCase):
     """
 
     def setUp(self):
-        self.model = Review()
-        self.model.save()
-
-    def test_var_initialization(self):
-        self.assertTrue(hasattr(self.model, "place_id"))
-        self.assertTrue(hasattr(self.model, "user_id"))
-        self.assertTrue(hasattr(self.model, "text"))
-        self.assertEqual(self.model.place_id, "")
-        self.assertEqual(self.model.user_id, "")
-        self.assertEqual(self.model.text, "")
+        model = Review()
+        self.assertTrue(hasattr(model, "place_id"))
+        self.assertTrue(hasattr(model, "user_id"))
+        self.assertTrue(hasattr(model, "text"))
+        self.assertEqual(model.place_id, "")
+        self.assertEqual(model.user_id, "")
+        self.assertEqual(model.text, "")
 
 
 if __name__ == "__main__":

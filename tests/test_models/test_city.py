@@ -9,14 +9,11 @@ class Test_CityModel(unittest.TestCase):
     """
 
     def setUp(self):
-        self.model = City()
-        self.model.save()
-
-    def test_var_initialization(self):
-        self.assertTrue(hasattr(self.model, "name"))
-        self.assertTrue(hasattr(self.model, "state_id"))
-        self.assertEqual(self.model.name, "")
-        self.assertEqual(self.model.state_id, "")
+        model = City()
+        self.assertTrue(hasattr(model, "name"))
+        self.assertTrue(hasattr(model, "state_id"))
+        self.assertEqual(model.name, "")
+        self.assertEqual(model.state_id, "")
 
 
 if __name__ == "__main__":
