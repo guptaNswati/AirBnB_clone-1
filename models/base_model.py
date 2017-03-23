@@ -19,8 +19,8 @@ else:
 class BaseModel:
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         id = Column(String(60), primary_key=True, unique=True, nullable=False)
-        created_at = Column(DateTime(), default=datetime.now(), nullable=False)
-        updated_at = Column(DateTime(), default=datetime.now(), nullable=False)
+        created_at = Column(DateTime, default=datetime.datetime.now, nullable=False)
+        updated_at = Column(DateTime, default=datetime.datetime.now, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """initialize class object"""

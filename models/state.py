@@ -10,7 +10,7 @@ from BaseModel.
 """
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ This is the State Class and it inherts from BaseModel """
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "states"
