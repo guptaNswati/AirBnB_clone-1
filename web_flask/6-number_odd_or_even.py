@@ -9,21 +9,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_hbnb():
+    """ displays Hello HBNB """
     return "Hello HBNB!"
 
 
 @app.route('/hbnb')
 def hbnb():
+    """ displays HBNB """
     return "HBNB"
 
 
 @app.route('/c/<text>')
 def c_with_text(text):
-    text = text.replace("_", " ")
-    return "C %s" % text
+    """ displays c with text """
+    return "C %s" % text.replace("_", " ")
 
 
-@app.route('/python/', defaults={'text' : 'is cool'})
+@app.route('/python/', defaults={'text': 'is cool'})
 @app.route('/python/<text>')
 def python_with_text(text):
     """ display python is cool or with text  """

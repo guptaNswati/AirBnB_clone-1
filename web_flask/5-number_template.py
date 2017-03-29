@@ -25,7 +25,7 @@ def c_with_text(text):
     return "C %s" % text.replace("_", " ")
 
 
-@app.route('/python/', defaults={'text' : 'is cool'})
+@app.route('/python/', defaults={'text': 'is cool'})
 @app.route('/python/<text>')
 def python_with_text(text):
     """ display python is cool or with text  """
