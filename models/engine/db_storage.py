@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 from models.base_model import BaseModel, Base
 
@@ -67,5 +67,7 @@ class DBStorage:
         database session
         """
         Base.metadata.create_all(self.__engine)
-        Session = sessionmaker(bind=self.__engine)
-        self.__session = Session()
+        self.__session = scoped_session(sessionmaker(bind=self.__engine))
+
+    def close(self):
+        self.__session.remove()

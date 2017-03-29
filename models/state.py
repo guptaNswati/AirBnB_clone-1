@@ -23,3 +23,13 @@ class State(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """ Initiate a State object """
         super(State, self).__init__(*args, **kwargs)
+
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        def cities(self):
+            """ return the list of City objects from storage """
+            city_list = storage.all("City")
+            all_cities = []
+            for city in city_list:
+                if city.state_id == self.id:
+                    all_cities.append(city)
+            return all_cities
