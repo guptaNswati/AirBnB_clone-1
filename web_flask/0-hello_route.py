@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 This module contains a script that starts a Flask web application.
+Usage: python3 -m 0-hello_route
 """
 from flask import Flask
 app = Flask(__name__)
@@ -8,6 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_hbnb():
+    """ displays Hello HBNB """
     return "Hello HBNB!"
 
 
