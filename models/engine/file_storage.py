@@ -12,17 +12,19 @@ class FileStorage:
         self.reload()
 
     def all(self, cls=None):
-        return FileStorage.__objects
+        if cls is None:
+            return FileStorage.__objects
+    else:
+        all_objs = {}
+        for key, value in FileStorage.__objects.items():
+            if value.__class__.__name__ == cls:
+                all_objs[key] = value
+        return all_objs
+
 
     def new(self, obj):
-        if obj is None:
-            FileStorage.__objects
-        else:
-            all_objs = {}
-            for key, value in FileStorage.__objects.items():
-                if key.__class_._name__ == obj:
-                    all_objs[key] = value
-            return all_objs
+        if obj is not None:
+            FileStorage.__objects[obj.id] = obj
 
     def save(self):
         store = {}
