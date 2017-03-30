@@ -25,6 +25,7 @@ class State(BaseModel, Base):
         super(State, self).__init__(*args, **kwargs)
 
     if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        @property
         def cities(self):
             """ return the list of City objects from storage """
             city_list = storage.all("City")
