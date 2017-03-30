@@ -15,8 +15,14 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        if obj is not None:
-            FileStorage.__objects[obj.id] = obj
+        if obj is None:
+            FileStorage.__objects
+        else:
+            all_objs = {}
+            for key, value in FileStorage.__objects.items():
+                if key.__class_._name__ == obj:
+                    all_objs[key] = value
+            return all_objs
 
     def save(self):
         store = {}
