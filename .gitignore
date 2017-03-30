@@ -1,5 +1,6 @@
 *~
 __pycache__
 *.pyc
-dump.sql
+7-dump.sql
+10-dump.sql
 file.json
