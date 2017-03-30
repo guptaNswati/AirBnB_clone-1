@@ -14,8 +14,9 @@ def display_cities():
     states = storage.all("State").values()
     amenities = storage.all("Amenity").values()
     places = storage.all("Place").values()
+    users = storage.all("User").values()
     return render_template('100-hbnb.html', states=states,
-                           amenities=amenities, places=places)
+                           amenities=amenities, places=places, users=users)
 
 
 @app.teardown_appcontext

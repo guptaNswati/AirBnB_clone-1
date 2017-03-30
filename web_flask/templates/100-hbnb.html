@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <link rel="shortcut icon" type="image/x-icon" href="images/icon.png"/>
-  <link rel="stylesheet" href="styles/4-common.css"/>
-  <link rel="stylesheet" href="styles/3-header.css"/>
-  <link rel="stylesheet" href="styles/3-footer.css"/>
-  <link rel="stylesheet" href="styles/6-filters.css"/>
-  <link rel="stylesheet" href="styles/8-places.css"/>
+  <link rel="shortcut icon" type="image/x-icon" href="../static/images/icon.png"/>
+  <link rel="stylesheet" href="../static/styles/4-common.css"/>
+  <link rel="stylesheet" href="../static/styles/3-header.css"/>
+  <link rel="stylesheet" href="../static/styles/3-footer.css"/>
+  <link rel="stylesheet" href="../static/styles/6-filters.css"/>
+  <link rel="stylesheet" href="../static/styles/8-places.css"/>
   </head>
   <body>
     <header>
@@ -57,10 +57,13 @@
 	      <div class="icon_bath"></div>{{place.number_bathrooms}} Bathrooms</div>
 	  </div>
 	  <div class="user">
-	    <p><b>Owner: </b>Julien Barbier</p></div>
+	    <p><b>Owner: </b>{% for user in users %} {% if user.id == place.user_id %}
+	      {{user.first_name}} {{user.last_name}} {% endif %} {% endfor %}</p></div>
+	  {% autoescape off %}
 	  <div class="description">
 	    <p>{{place.description}}</p>
           </div>
+	  {% endautoescape %}
 	</article>
 	{% endfor %}
       </section>
