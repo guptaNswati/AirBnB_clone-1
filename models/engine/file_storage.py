@@ -14,13 +14,12 @@ class FileStorage:
     def all(self, cls=None):
         if cls is None:
             return FileStorage.__objects
-    else:
-        all_objs = {}
-        for key, value in FileStorage.__objects.items():
-            if value.__class__.__name__ == cls:
-                all_objs[key] = value
-        return all_objs
-
+        else:
+            all_objs = {}
+            for key, value in FileStorage.__objects.items():
+                if value.__class__.__name__ == cls:
+                    all_objs[key] = value
+            return all_objs
 
     def new(self, obj):
         if obj is not None:
